@@ -1,57 +1,84 @@
- set ignorecase                                                                                                                                                    
+set number
+set relativenumber
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set mouse=a
+set ignorecase                                                                                                                                                    
+set noswapfile
+set scrolloff=7
  set history=1000
  set incsearch
  set showmatch
  set wildmenu
  set wildmode=list:longest
- set nocp
  set autoindent
+ packloadall
  syntax on
+ set omnifunc=htmlcomplete#CompleteTags
+ set omnifunc=syntaxcomplete#Complete
  set hlsearch
  set tabstop=4
- set nocompatible
- filetype on 
  filetype plugin on
+ filetype on 
+" set fileformat=unix
  filetype indent on 
- set number 
  set cursorline
  set cursorcolumn
  inoremap jk <esc>
  set expandtab
-" PLUGINS ---------------------------------------------------------------- {{{                                                                                   
-    
- call plug#begin('~/.vim/plugged')
-      
-      
-    Plug 'dense-analysis/ale'
-  
-    Plug 'preservim/nerdtree'    
-      
- call plug#end()
-   
- " }}}
-" MAPPINGS --------------------------------------------------------------- {{{                                                                                   
-   
- " Mappings code goes here.
- nnoremap <F3> :NERDTreeToggle<cr>
- inoremap jk <esc>
- nnoremap <leader> \\ :nohlsearch<CR>
-   
- " }}}
-" VIMSCRIPT -------------------------------------------------------------- {{{
-   
- " This will enable code folding.
- " Use the marker method of folding.
- augroup filetype_vim
-     autocmd!
-     autocmd FileType vim setlocal foldmethod=marker                                                                                                              
- augroup END
-  
- " More Vimscripts code goes here.
-   
- " }}}
-" STATUS LINE ------------------------------------------------------------ {{{                                                                                   
-   
- " Status bar code goes here.
-   
- " }}}
+call plug#begin('~/.vim/plugged')
+
+Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'https://github.com/preservim/nerdtree'
+"Plug 'https://github.com/tpope/vim-surround'
+"Plug 'https://github.com/tpope/vim-commentary'
+"Plug 'https://github.com/ap/vim-css-color'
+"Plug 'https://github.com/rafi/awesome-vim-colorschemes'
+"Plug 'https://github.com/ryanoasis/vim-devicons'
+"Plug 'https://github.com/tc50cal/vim-terminal'
+Plug 'https://github.com/terryma/vim-multiple-cursors'
+Plug 'https://github.com/preservim/tagbar' 
+"Plug 'https://github.com/neoclide/coc.nvim'
+Plug 'octol/vim-cpp-enhanced-highlight' "collors for c++
+Plug 'morhetz/gruvbox' "plug for collors for vim
+Plug 'neovim/nvim-lspconfig'
+
+call plug#end()
+
+set encoding=UTF-8 "?
+
+nmap <F8> :TagbarToggle<CR> 
+
+let g:cpp_concepts_highlight = 1 "collors for c++ libr
+let g:cpp_experimental_template_highlight = 1 "deffolt collors for c++
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_posix_standard = 1
+
+:set completeopt-=preview 
+colorscheme gruvbox "collors for vim
+syntax enable
+set background=dark
+"colorscheme solarized
+
+nnoremap <F6> :w!<enter>
+nnoremap <F5> :q!<enter>
+nnoremap <C-t> :NERDTree<CR>
+nnoremap ,<space> :nohlsearch<CR>
+"lua << end 
+"local nvim_lsp = require('lspconfig')
+"local servers = {'ccls'}
+"for_, lsp in ipairs(servers) do
+"  nvim_lsp[lspj.setup {
+"      on_attach = on_attach,
+"      flags = {
+"#          debounce_text_changes = 150,
+"      }
+"      }
+"end
+"it's works?
+
+
